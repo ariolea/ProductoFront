@@ -44,26 +44,30 @@ export class AppComponent {
 
   consultar() {
 
-    this.showFields = true;
-    this.showConsultButton = false;
+    if (this.producto.sku) {
 
-    this.httpClient.get("http://localhost:8080/api/productos/" + this.producto.sku).subscribe({
-      next: (data) => {
-        this.producto = data;
-        console.log(this.producto);
-        this.descontinuadoDisabled = false;
-      },
-      error: (error) => {
-        if (error.status == 404) {
-          this.showActionButtons = false;
-          this.showGuardarButtons = true;
-          this.descontinuadoDisabled = true;
+      this.showFields = true;
+      this.showConsultButton = false;
+
+      this.httpClient.get("http://localhost:8080/api/productos/" + this.producto.sku).subscribe({
+        next: (data) => {
+          this.producto = data;
+          console.log(this.producto);
+          this.descontinuadoDisabled = false;
+        },
+        error: (error) => {
+          if (error.status == 404) {
+            this.showActionButtons = false;
+            this.showGuardarButtons = true;
+            this.descontinuadoDisabled = true;
+          }
+        },
+        complete: () => {
+
         }
-      },
-      complete: () => {
+      })
+    }
 
-      }
-    })
   }
 
 
@@ -89,7 +93,7 @@ export class AppComponent {
   }
 
   actualizar() {
-    
+
     if ((this.producto.cantidad ?? 0) > (this.producto.stock ?? 0)) {
       alert("La cantidad no puede ser mayor que el stock.");
       return;
