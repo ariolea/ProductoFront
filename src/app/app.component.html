@@ -1,0 +1,72 @@
+<form (ngSubmit)="consultar()">
+  <label for="sku">Sku:</label>
+  <input type="number" id="sku" name="sku" [(ngModel)]="producto.sku" required />
+
+  <button type="submit" *ngIf="showConsultButton">Consultar</button>
+
+  <div *ngIf="showFields">
+    <label for="articulo">Artículo:</label>
+    <input type="text" id="articulo" name="articulo" [(ngModel)]="producto.articulo" required />
+
+    <label for="marca">Marca:</label>
+    <input type="text" id="marca" name="marca" [(ngModel)]="producto.marca" required />
+
+    <label for="modelo">Modelo:</label>
+    <input type="text" id="modelo" name="modelo" [(ngModel)]="producto.modelo" required />
+
+    <label for="departamento">Departamento:</label>
+    <select id="departamento" name="departamento" [(ngModel)]="producto.departamento" required>
+      <option *ngIf="!producto.departamento" value="">Seleccione un departamento</option>
+      <option *ngFor="let depto of departamentos" [value]="depto">{{ depto }}</option>
+    </select>
+
+    <label for="clase">Clase:</label>
+    <select id="clase" name="clase" [(ngModel)]="producto.clase" required [disabled]="!producto.departamento">
+      <option *ngIf="!producto.clase" value="">Seleccione una clase</option>
+      <option *ngFor="let clase of clases" [value]="clase">{{ clase }}</option>
+    </select>
+
+    <label for="familia">Familia:</label>
+    <select id="familia" name="familia" [(ngModel)]="producto.familia" required [disabled]="!producto.clase">
+      <option *ngIf="!producto.familia" value="">Seleccione una familia</option>
+      <option *ngFor="let familia of familias" [value]="familia">{{ familia }}</option>
+    </select>
+
+
+
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" [(ngModel)]="producto.stock" required />
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" [(ngModel)]="producto.cantidad" required />
+
+    <div class="form-row">
+      <div>
+        <label for="fechaAlta">Fecha Alta:</label>
+        <input type="date" id="fechaAlta" name="fechaAlta" [(ngModel)]="producto.fechaAlta"
+          [disabled]="fechaAltaDisabled" required />
+      </div>
+      <div>
+        <label for="fechaBaja">Fecha Baja:</label>
+        <input type="date" id="fechaBaja" name="producto.fechaBaja" [(ngModel)]="producto.fechaBaja"
+          [disabled]="fechaBajaDisabled" required />
+      </div>
+    </div>
+
+    <label for="descontinuado">
+      <input type="checkbox" id="descontinuado" name="descontinuado" [(ngModel)]="producto.descontinuado"
+        [disabled]="descontinuadoDisabled" (change)="onDescontinuadoChange()" />
+      Descontinuado
+    </label>
+
+    <div class="form-actions" *ngIf="showActionButtons">
+      <button type="button" (click)="actualizar()">Actualizar</button>
+      <button type="button" (click)="eliminar()">Eliminar</button>
+    </div>
+
+  </div>
+
+  <div class="btnGuardar" *ngIf="showGuardarButtons">
+    <button type="button" (click)="insertar()">Guardar</button>
+  </div>
+</form>

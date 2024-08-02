@@ -1,0 +1,105 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    width: 300px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-row>div {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-row>div:last-child {
+    margin-right: 0;
+}
+
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.form-actions button:first-child {
+    background-color: #2196F3;
+    color: #fff;
+    width: 120px;
+}
+
+.form-actions button:first-child:hover {
+    background-color: #1976D2;
+}
+
+.form-actions button:last-child {
+    background-color: #f44336;
+    color: #fff;
+    width: 120px;
+}
+
+.form-actions button:last-child:hover {
+    background-color: #d32f2f;
+}
+
+
+.btnGuardar {
+    display: flex;
+    margin-top: 10px;
+}
+
+
+.btnGuardar button {
+    width: 100%;
+}
